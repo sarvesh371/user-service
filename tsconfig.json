@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "forceConsistentCasingInFileNames": true,
+        "strictPropertyInitialization": false,
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "outDir": "./build",
+        "rootDir": "v1",
+        "target": "es6",
+        "skipLibCheck": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,             // Required for TypeORM
+        "experimentalDecorators": true,          // Required for TypeORM
+        "baseUrl": "v1"
+    },
+    "include": ["v1/**/*"],
+    "exclude": ["node_modules"]
+}
