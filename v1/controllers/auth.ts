@@ -1,5 +1,6 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { runQuery } from "../utils/postgres";
+import bcrypt from "bcrypt";
 
 /**
  * @route POST v1/signup
@@ -24,10 +25,17 @@ export async function Signup(req: Request, res: Response): Promise<void> {
             });
         }
         else {
+            // Hash the password
+            const hashedPassword = await bcrypt.hash(password, 10);
             // Insert new user into the database
             const userData = await runQuery(
-                `INSERT INTO users (userName, fullName, email, password) VALUES ('${userName}', '${fullName}', '${email}', '${password}') RETURNING *`
+                `INSERT INTO users (userName, fullName, email, password) VALUES ('${userName}', '${fullName}', '${email}', '${hashedPassword}') RETURNING *`
             );
+            // Remove password and access token from the userData
+            if (userData && userData[0]) {
+                delete userData[0].password;
+                delete userData[0].accesstoken;
+            }
             res.status(201).json({
                 status: "success",
                 data: [userData],
