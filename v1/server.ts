@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import { PORT, URI } from "./config/index";
 import Router from "./routes/index";
 
 // === 1 - CREATE SERVER ===
@@ -23,6 +22,6 @@ server.use(express.json());
 Router(server);
 
 // === 5 - START UP SERVER ===
-server.listen(PORT, () =>
-    console.log(`Server running on http://localhost:${PORT}`)
-);
+server.listen(8080, () => {
+    console.log(`Server running on http://localhost:8080`);
+});

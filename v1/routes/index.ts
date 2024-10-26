@@ -1,4 +1,5 @@
 import { Application, Request, Response } from 'express';
+import { Signup } from "../controllers/auth";
 
 const Router = (server: Application) => {
     // home route with the get method and a handler
@@ -15,6 +16,10 @@ const Router = (server: Application) => {
                 message: "Internal Server Error",
             });
         }
-    })
+    });
+    server.post(
+        "/v1/signup",
+        Signup
+    );
     };
 export default Router;
