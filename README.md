@@ -3,6 +3,10 @@ This project helps people to integrate Signup, Login and logout in there apps
 
 1. Setting up node
 2. Setting up db
-3. Postman collection
+3. Postman collection/ API's
 4. Start server
 5. Debug server
+6. Session
+7. .env file
+8. Middleware
+9. Utils
