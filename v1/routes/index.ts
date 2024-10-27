@@ -1,5 +1,5 @@
 import { Application, Request, Response } from 'express';
-import { Signup, Login } from "../controllers/auth";
+import { Signup, Login, Logout } from "../controllers/auth";
 import { Verify } from "../middleware/verify";
 
 const Router = (server: Application) => {
@@ -27,11 +27,12 @@ const Router = (server: Application) => {
         "/v1/login",
         Login
     );
+    server.get(
+        "/v1/logout",
+        Logout
+    );
     server.get("/v1/user", Verify, (req, res) => {
         res.status(200).json({
-            status: "success",
-            data: [],
-            message: "User is authorized",
         });
     });
 };

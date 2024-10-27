@@ -94,7 +94,39 @@ export async function Login(req: Request, res: Response): Promise<void> {
     } catch (err) {
         console.error("Error during user login:", err);
         res.status(500).json({
-            status: "error",
+            status: "failed",
+            data: [],
+            message: "Internal Server Error",
+        });
+    }
+}
+
+export async function Logout(req: Request, res: Response): Promise<void> {
+    try {
+        const authHeader = req.headers['cookie']; // get the session cookie from request header
+        if (!authHeader){
+            res.sendStatus(204); // If there is no cookie, send a no content response.
+        }
+        else {
+            // Also clear request cookie on client
+            res.cookie("SessionID", "", {
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
+                expires: new Date(0), // Set to an expired date to force removal
+                path: "/", // Ensure the correct path is used
+            });
+            res.setHeader('Clear-Site-Data', '"cookies"');
+            res.status(200).json({
+                status: "success",
+                data: [],
+                message: "You are logged out!",
+            });
+        }
+    } catch (err) {
+        console.error("Error during user logout:", err);
+        res.status(500).json({
+            status: "failed",
             data: [],
             message: "Internal Server Error",
         });
