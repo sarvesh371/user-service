@@ -6,7 +6,7 @@
         "request": "launch",
         "name": "Launch Program",
         "skipFiles": ["<node_internals>/**"],
-        "program": "/Users/sarvesh/Documents/Github/user-service/v1/server.ts",  // Update with your entry file path
+        "program": "/Users/sarvesh/Documents/Github/user-service/v1/index.ts",  // Update with your entry file path
         "runtimeExecutable": "npm",
         "runtimeArgs": ["run", "dev"],
         "console": "integratedTerminal",

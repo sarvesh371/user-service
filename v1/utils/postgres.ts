@@ -1,16 +1,16 @@
 // src/db.ts
-import { Client } from 'pg';
+import { Client } from "pg";
 import { HOST, USER, PASSWORD, DATABASE } from "../config/index";
 
 export async function runQuery(queryText: string) {
   // Initialize the client with database configuration
-    const dbConfig = {
-        user: USER,
-        host: HOST,      // Or your database server's IP
-        database: DATABASE,
-        password: PASSWORD,
-        port: 5432,
-    };
+  const dbConfig = {
+    user: USER,
+    host: HOST, // Or your database server's IP
+    database: DATABASE,
+    password: PASSWORD,
+    port: 5432,
+  };
 
   const client = new Client(dbConfig);
 
@@ -23,9 +23,8 @@ export async function runQuery(queryText: string) {
 
     // Return the result
     return res.rows;
-
   } catch (error) {
-    console.error('Database query error:', error);
+    console.error("Database query error:", error);
   } finally {
     // Close the connection
     await client.end();
