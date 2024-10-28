@@ -1,6 +1,6 @@
 // src/db.ts
 import { Client } from "pg";
-import { HOST, USER, PASSWORD, DATABASE } from "../config/index";
+import { HOST, USER, PASSWORD, DATABASE, SSL } from "../config/index";
 
 export async function runQuery(queryText: string) {
   // Initialize the client with database configuration
@@ -10,6 +10,7 @@ export async function runQuery(queryText: string) {
     database: DATABASE,
     password: PASSWORD,
     port: 5432,
+    ssl: SSL === 'true' ? true : SSL === 'false' ? false : undefined
   };
 
   const client = new Client(dbConfig);
