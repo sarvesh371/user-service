@@ -1,15 +1,15 @@
 // src/db.ts
 import { Client } from "pg";
-import { HOST, USER, PASSWORD, DATABASE, SSL } from "../config/index";
+import { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_DATABASE, SSL } from "../config/index";
 
 export async function runQuery(queryText: string) {
   // Initialize the client with database configuration
   const dbConfig = {
-    user: USER,
-    host: HOST, // Or your database server's IP
-    database: DATABASE,
-    password: PASSWORD,
-    port: 5432,
+    user: DB_USER,
+    host: DB_HOST, // Or your database server's IP
+    database: DB_DATABASE,
+    password: DB_PASSWORD,
+    port: parseInt(DB_PORT || "5432"), // Default to 5432 if PORT is undefined
     ssl: SSL === 'true' ? true : SSL === 'false' ? false : undefined
   };
 

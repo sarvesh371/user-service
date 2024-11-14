@@ -129,13 +129,14 @@ $ crypto.randomBytes(20).toString(‘hex’)
 ```
 6. Create a ```.env``` file in your project's container folder. The file should have the following variables with your own values:
 ```
-HOST=localhost
-USER=admin
-DATABASE=user
-PASSWORD=admin
+DB_HOST=localhost
+DB_USER=admin
+DB_DATABASE=user
+DB_PASSWORD=admin
+DB_PORT=5432
 SECRET_ACCESS_TOKEN={GENERATED FROM STEP 5}
-SESSION_EXPIRATION=60
 SERVER_PORT=8080
+SESSION_EXPIRATION=60
 SSL=false
 ```
 7. Run the server using below command from root folder
