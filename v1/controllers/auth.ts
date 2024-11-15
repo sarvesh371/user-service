@@ -87,7 +87,9 @@ export async function Login(req: Request, res: Response): Promise<void> {
       res.cookie("SessionID", token, { ...options, sameSite: "none" }); // set the token to response header, so that the client sends it back on each subsequent request
       res.status(200).json({
         status: "success",
-        data: [],
+        data: [{
+          'userId': existingUser[0].id,
+        }],
         message: "You have successfully logged in.",
       });
     }

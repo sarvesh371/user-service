@@ -3,7 +3,7 @@ import { SECRET_ACCESS_TOKEN } from "../config/index";
 
 import { Request, Response, NextFunction } from "express";
 
-export async function Verify(
+export async function User(
   req: Request,
   res: Response,
   next: NextFunction,

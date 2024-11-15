@@ -1,6 +1,6 @@
 import { Application, Request, Response } from "express";
 import { Signup, Login, Logout } from "../controllers/auth";
-import { Verify } from "../middleware/verify";
+import { User } from "../middleware/user";
 
 const Router = (server: Application) => {
   // home route with the get method and a handler
@@ -22,7 +22,7 @@ const Router = (server: Application) => {
   server.post("/v1/signup", Signup);
   server.post("/v1/login", Login);
   server.get("/v1/logout", Logout);
-  server.get("/v1/user", Verify, (req, res) => {
+  server.get("/v1/user", User, (req, res) => {
     res.status(200).json({});
   });
 };
