@@ -19,6 +19,7 @@ export async function Signup(req: Request, res: Response): Promise<void> {
         data: [],
         message: "It seems you already have an account, please log in instead.",
       });
+      return; // Prevent further execution
     } else {
       // Hash the password
       const hashedPassword = await bcrypt.hash(password, 10);
@@ -62,7 +63,7 @@ export async function Login(req: Request, res: Response): Promise<void> {
         data: [],
         message: "It seems you don't have an account, please signup instead.",
       });
-      return;
+      return; // Prevent further execution
     } else {
       // Compare the hashed password with the password in the database
       const isPasswordMatch = await bcrypt.compare(
@@ -76,6 +77,7 @@ export async function Login(req: Request, res: Response): Promise<void> {
           message:
             "Invalid password. Please try again with the correct password.",
         });
+        return; // Prevent further execution
       }
       let options = {
         maxAge: SESSION_EXPIRATION * 1000,
@@ -108,6 +110,7 @@ export async function Logout(req: Request, res: Response): Promise<void> {
     const authHeader = req.headers["cookie"]; // get the session cookie from request header
     if (!authHeader) {
       res.sendStatus(204); // If there is no cookie, send a no content response.
+      return; // Prevent further execution
     } else {
       // Also clear request cookie on client
       res.cookie("SessionID", "", {
