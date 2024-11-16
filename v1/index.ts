@@ -8,8 +8,15 @@ import { SERVER_PORT } from './config/index';
 const server = express();
 
 // CONFIGURE HEADER INFORMATION
-// Allow request from any source. In real production, this should be limited to allowed origins only
-server.use(cors());
+const allowedOrigins =
+    ["https://your-production-frontend.com",
+    "http://localhost:5173"];
+server.use(
+    cors({
+        origin: allowedOrigins,
+        credentials: true, // Allow cookies and credentials
+    }),
+);
 server.disable("x-powered-by"); //Reduce fingerprinting
 server.use(cookieParser());
 server.use(express.urlencoded({ extended: false }));
@@ -23,4 +30,4 @@ Router(server);
 // === 5 - START UP SERVER ===
 server.listen(SERVER_PORT, () => {
     console.log(`Server running on http://localhost:${SERVER_PORT}`);
-});
+}); 
