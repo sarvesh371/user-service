@@ -82,7 +82,7 @@ export async function Login(req: Request, res: Response): Promise<void> {
       let options = {
         maxAge: SESSION_EXPIRATION * 1000,
         httpOnly: true, // The cookie is only accessible by the web server
-        secure: true,
+        secure: false,  // Set to true if your website is served over HTTPS
         sameSite: "None",
       };
       const token = await generateAccessJWT(existingUser[0].id); // generate session token for user
@@ -115,7 +115,7 @@ export async function Logout(req: Request, res: Response): Promise<void> {
       // Also clear request cookie on client
       res.cookie("SessionID", "", {
         httpOnly: true,
-        secure: true,
+        secure: false,  // Set to true if your website is served over HTTPS
         sameSite: "none",
         expires: new Date(0), // Set to an expired date to force removal
         path: "/", // Ensure the correct path is used
