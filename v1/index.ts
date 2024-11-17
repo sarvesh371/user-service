@@ -9,8 +9,8 @@ const server = express();
 
 // CONFIGURE HEADER INFORMATION
 const allowedOrigins =
-    ["PRODUCTION_URL",
-    "LOCALHOST_URL"];
+    ["https://ai.motivationkaksha.xyz",
+    "http://localhost:5173"];
 server.use(
     cors({
         origin: allowedOrigins,
