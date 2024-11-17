@@ -8,9 +8,12 @@ import { SERVER_PORT } from './config/index';
 const server = express();
 
 // CONFIGURE HEADER INFORMATION
+const allowedOrigins =
+    ["https://your-production-frontend.com",
+    "http://localhost:5173"];
 server.use(
     cors({
-        origin: '*',
+        origin: allowedOrigins,
         credentials: true, // Allow cookies and credentials
     }),
 );
