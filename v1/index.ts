@@ -9,8 +9,8 @@ const server = express();
 
 // CONFIGURE HEADER INFORMATION
 const allowedOrigins =
-    ["https://your-production-frontend.com",
-    "http://localhost:5173"];
+    ["PRODUCTION_URL",
+    "LOCALHOST_URL"];
 server.use(
     cors({
         origin: allowedOrigins,
